@@ -1,0 +1,75 @@
+// 1. Definimos la estructura de un Producto
+class Producto {
+    constructor(id, nombre, precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+}
+
+// 2. Definimos la lógica del Carrito de Compras
+class Carrito {
+    constructor() {
+        this.items = []; // Aquí guardaremos los productos y sus cantidades
+    }
+
+    // Agregar un producto al carrito
+    agregarProducto(producto, cantidad = 1) {
+        // Verificar si el producto ya existe en el carrito
+        const itemExistente = this.items.find(item => item.producto.id === producto.id);
+
+        if (itemExistente) {
+            itemExistente.cantidad += cantidad;
+        } else {
+            this.items.push({ producto, cantidad });
+        }
+        console.log(`✅ Agregado: ${producto.nombre} (x${cantidad})`);
+    }
+
+    // Eliminar o disminuir la cantidad de un producto
+    eliminarProducto(idProducto, cantidadAEliminar = null) {
+        const index = this.items.findIndex(item => item.producto.id === idProducto);
+
+        if (index !== -1) {
+            const item = this.items[index];
+            
+            // Si no se especifica cantidad o la cantidad a eliminar es mayor/igual a la que hay, se borra el item
+            if (cantidadAEliminar === null || item.cantidad <= cantidadAEliminar) {
+                console.log(`❌ Eliminado por completo: ${item.producto.nombre}`);
+                this.items.splice(index, 1);
+            } else {
+                item.cantidad -= cantidadAEliminar;
+                console.log(`📉 Reducida cantidad de ${item.producto.nombre}. Quedan: ${item.cantidad}`);
+            }
+        } else {
+            console.log("⚠️ El producto no está en el carrito.");
+        }
+    }
+
+    // Calcular el total de la compra
+    calcularTotal() {
+        return this.items.reduce((total, item) => total + (item.producto.precio * item.cantidad), 0);
+    }
+
+    // Vaciar todo el carrito
+    vaciarCarrito() {
+        this.items = [];
+        console.log("🗑️ El carrito ha sido vaciado.");
+    }
+
+    // Mostrar el estado actual del carrito en consola
+    mostrarCarrito() {
+        if (this.items.length === 0) {
+            console.log("🛒 El carrito está vacío.");
+            return;
+        }
+
+        console.log("\n--- 🛒 TU CARRITO ---");
+        this.items.forEach(item => {
+            const subtotal = item.producto.precio * item.cantidad;
+            console.log(`- ${item.producto.nombre} x${item.cantidad} | Precio Unitario: $${item.producto.precio} | Subtotal: $${subtotal}`);
+        });
+        console.log(`Total a pagar: $${this.calcularTotal()}`);
+        console.log("----------------------\n");
+    }
+}
