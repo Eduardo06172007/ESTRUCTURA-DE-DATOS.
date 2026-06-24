@@ -9,7 +9,6 @@ public class SimuladorRendimiento {
         CentroDistribucion centroLineal = new CentroDistribucion(totalPaquetes);
         CentroDistribucion centroBinario = new CentroDistribucion(totalPaquetes);
 
-       
         for (int i = 0; i < totalPaquetes; i++) {
             int idAleatorio = random.nextInt(500_000) + 1;
             int cpAleatorio = random.nextInt(900_000) + 100_000;
@@ -23,13 +22,13 @@ public class SimuladorRendimiento {
 
         System.out.println("=== SIMULACIÓN DE RENDIMIENTO CON MÉTODOS DE ORDENACIÓN ===");
 
-        // 1. Medir Búsqueda Lineal
+        //Medir Búsqueda Lineal
         long startLineal = System.nanoTime();
         centroLineal.busquedaLineal(idABuscar);
         long endLineal = System.nanoTime();
         long tiempoLineal = endLineal - startLineal;
 
-        // 2. Medir Búsqueda Binaria que disparará el Merge Sort automáticamente
+        //Medir Búsqueda Binaria que disparará el Merge Sort automáticamente
         long startBinariaComplet = System.nanoTime();
         centroBinario.busquedaBinaria(idABuscar); 
         long endBinariaComplet = System.nanoTime();

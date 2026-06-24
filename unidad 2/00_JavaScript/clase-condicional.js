@@ -47,3 +47,8 @@ console.log(`Tu combo de palomitas cuesta: $${precioCombo}`);
 // Si edad es mayor o igual a 18 es "Adulto", si no, es "Menor"
 let clasificacion = (edad >= 18) ? "Adulto" : "Menor";
 console.log(`Clasificación del cliente: ${clasificacion}`);
+
+if (nombre === "EDUARDO"){
+    console.log("¡Bienvenido, Eduardo! Disfruta de tu película favorita.");
+    
+}

@@ -5,7 +5,7 @@ class Vehiculo {
     this.modelo = modelo;
     this.encendido = false;
   }
-
+  
   // Método: una función que pertenece a la clase
   arrancar() {
     this.encendido = true;
@@ -26,6 +26,7 @@ class Coche extends Vehiculo {
 class CuentaBancaria {
   #saldo = 0; // Propiedad privada
 
+  
   depositar(cantidad) {
     this.#saldo += cantidad;
   }

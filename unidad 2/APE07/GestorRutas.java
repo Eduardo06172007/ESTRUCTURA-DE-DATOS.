@@ -23,7 +23,6 @@ public class GestorRutas {
                 }
             }
 
-            // Si no hubo intercambios, el arreglo ya está ordenado
             if (!huboIntercambio) break;
         }
     }
